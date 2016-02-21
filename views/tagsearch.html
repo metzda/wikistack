@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <h3>Search by Tag</h3>
+    <hr>
+    <form method="get" action="search">
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">Tag</label>
+          <div class="col-sm-10">
+            <input name="tag" type="text" class="form-control"/>
+          </div>
+        </div>
+
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">submit</button>
+        </div>
+    </form>
+    <br>
+    <hr>
+    <br>
+    {% if pages.length > 0 %}
+        <h4>Page Matches for {{tag}}</h4>
+        <ul class="list-unstyled">
+            {% for page in pages %}
+                <li>{{ page | pageLink }}</li>
+            {% endfor %}
+        </ul>
+    {% elseif tag %}
+        <h4>Page Matches for {{tag}}</h4>
+        There are no matching pages
+    {% else %}
+
+    {% endif %}
+{% endblock %}
